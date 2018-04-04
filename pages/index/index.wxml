@@ -152,7 +152,7 @@
     <view class="item item-divider">
       <text>温度达标</text>
       <text class="iconfont icon-cnlonghubang gold f26"></text>
-      <navigator url="/pages/list/list?title=0" class="fr color-99">更多</navigator>
+      <text bindtap='onTap' class="fr color-99">更多</text>
     </view>
     <view class="item item-thumbnail-left" wx:for="{{standRdc}}" wx:for-index="idx" wx:for-item="item">
       <image class='item-image' src='{{item.logo}}'></image>

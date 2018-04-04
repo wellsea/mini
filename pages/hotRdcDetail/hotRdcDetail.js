@@ -4,7 +4,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    title:'',
+    title:'详情',
     id:'',
     deadLine:['--', '1个月以下', '1~3个月', '3~6个月', '6~9个月', '1年以上', '两年以上', '三年以上', '五年以上'],
     rdc:{},
@@ -16,14 +16,6 @@ Page({
   onLoad: function (options) {
     wx.showLoading({
       title: '加载中',
-    })
-
-    this.setData({
-      title: options.title,
-      id: options.id
-    })
-    wx.setNavigationBarTitle({
-      title: this.data.title
     })
     const that = this;
     wx.request({//初始化温度类型
@@ -38,7 +30,8 @@ Page({
           rdc.partnerInfoEntity.telephone = rdc.partnerInfoEntity.telephone.substring(0, 3) + '-' + rdc.partnerInfoEntity.telephone.substring(3, 7) + '-' +rdc.partnerInfoEntity.telephone.substring(7, 11);
           that.setData({
             rdc: rdc,
-            pictures: rdc.orgfiles
+            pictures: rdc.orgfiles,
+            title:rdc.title
           })
         }else{
           wx.showToast({
@@ -81,6 +74,9 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    wx.setNavigationBarTitle({
+      title: this.data.title
+    })
     wx.hideLoading()
   },
 

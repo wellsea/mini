@@ -7,6 +7,7 @@ Page({
    */
   data: {
     rdc: {},
+    title:''
   },
 
   /**
@@ -14,9 +15,8 @@ Page({
    */
   onLoad: function (options) {
     wx.showLoading({
-      title: '加载中',
+      title: '加载中'
     })
-
     wx.setNavigationBarTitle({
       title: '冷库资源'
     })
@@ -32,7 +32,8 @@ Page({
       url: app.host + "/i/rdc/yu_getRdcList",
       data: {
         pageNum: 1,
-        pageSize: 300
+        pageSize: 300,
+        istemperaturestandard: app.stand        
       },
       success: res => {
         let rdc = res.data.data;

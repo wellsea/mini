@@ -68,4 +68,5 @@ App({
   globalData: {
     userInfo: null
   },
+  stand:''
 })

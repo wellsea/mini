@@ -56,37 +56,16 @@ Page({
       })
     }
   },
+  //跳转到冷库资源
+  onTap: function (event) {
+    app.stand = 1;
+    wx.switchTab({
+      url: "/pages/list/list"
+    });
+  },
   onLoad: function () {
-    var that = this;
-     //获取新库热库数据
-    wx.request({
-      url: app.host+"/i/ShareRdcController/getColumnRdc",
-      data: {
-        dataType: 3, typeCode: 1
-      },
-      success: res => {
-        let data = res.data, newRdc = [], hotRdc=[];
-        for (let i = 0; i < res.data.length;i++){
-          if (i < 3) {
-            data[i].storageType = app.storageTypeList.data[data[i].codeLave3].type;
-            newRdc.push(data[i]);
-          } else {
-            data[i].buildtype = data[i].buildtype == 2 ? "多层库" : "单层库";
-            data[i].storageplatform = data[i].storageplatform == 1 ? "有月台" : "无月台";
-            data[i].storagerefreg = data[i].storagerefreg == 0 ? 1 : data[i].storagerefreg
-            data[i].storagerefreg = app.storageRefregList[data[i].storagerefreg];
-            hotRdc.push(data[i]);
-          }
-        }
-        that.setData({ newRdc: newRdc });
-        that.setData({ hotRdc: hotRdc });
-      }
-    })
-    wx.request({
-      url: app.host + "/i/rdc/findNewReachStroage",
-      success: res => {
-        that.setData({ standRdc: res.data });
-      }
+    wx.showLoading({
+      title: '加载中'
     })
     if (app.globalData.userInfo) {
       this.setData({
@@ -117,6 +96,40 @@ Page({
     wx.setNavigationBarTitle({
       title: '链库-找冷库、上链库',
     })  
+  },
+  onReady:function(){
+    var that = this;
+    //获取新库热库数据
+    wx.request({
+      url: app.host + "/i/ShareRdcController/getColumnRdc",
+      data: {
+        dataType: 3, typeCode: 1
+      },
+      success: res => {
+        let data = res.data, newRdc = [], hotRdc = [];
+        for (let i = 0; i < res.data.length; i++) {
+          if (i < 3) {
+            data[i].storageType = app.storageTypeList.data[data[i].codeLave3].type;
+            newRdc.push(data[i]);
+          } else {
+            data[i].buildtype = data[i].buildtype == 2 ? "多层库" : "单层库";
+            data[i].storageplatform = data[i].storageplatform == 1 ? "有月台" : "无月台";
+            data[i].storagerefreg = data[i].storagerefreg == 0 ? 1 : data[i].storagerefreg
+            data[i].storagerefreg = app.storageRefregList[data[i].storagerefreg];
+            hotRdc.push(data[i]);
+          }
+        }
+        that.setData({ newRdc: newRdc });
+        that.setData({ hotRdc: hotRdc });
+      }
+    })
+    wx.request({
+      url: app.host + "/i/rdc/findNewReachStroage",
+      success: res => {
+        that.setData({ standRdc: res.data }); 
+        wx.hideLoading();
+      }
+    })
   },
   getUserInfo: function (e) {
     console.log(e)
