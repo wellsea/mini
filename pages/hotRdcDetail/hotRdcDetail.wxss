@@ -1,0 +1,38 @@
+/* pages/hotRdcDetail/hotRdcDetail.wxss */
+.swiper {
+  height: 520rpx;
+  width: 100%;
+}
+
+.swiper image {
+  height: 100%;
+  width: 100%;
+}
+view{
+  width: 100%;
+  line-height: 1.5;
+}
+.info-title{
+  width: 100%;
+  padding: 6rpx 0;
+  font-size: 32rpx;
+  color: #333;
+}
+.lineH-40{
+  line-height: 80rpx;
+}
+.custom{
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2rpx solid #efefef;
+  margin: 30rpx 30rpx 30rpx 0;
+}
+.bdt.bdb.tac view{
+  line-height: 2
+}
+/*cartcss*/
+.info-head{
+  background: #f5f5f5;
+}

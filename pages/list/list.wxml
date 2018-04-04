@@ -1,0 +1,23 @@
+<!--pages/list/list.wxml-->
+<view class="card">
+    <navigator  hover-class="card-hover"
+     class="item item-thumbnail-left" wx:for="{{rdc}}" wx:for-index="idx" wx:for-item="item">
+      <image class='item-image' src='{{item.logo}}'></image>
+      <view class='b omg item-title omg'>{{item.name}}</view>
+      <view class='f13'>
+        <text>可用面积:</text>
+        <text class='orange b'>{{item.sharedInfoEntity.sqm?item.sharedInfoEntity.sqm+'㎡':'--'}}</text>
+        <text class='orange b' wx:if="{{item.sharedInfoEntity.sqm}}">{{item.unitPrice==0?'面议':item.unitPrice}}</text>{{item.unitPrice!=0?item.unit:''}}
+      </view>
+      <view class='f13 omg'>
+        <text class='greenSpan' wx:if="{{item.istemperaturestandard==1}}">冷链委温度达标库</text>
+        <text class='greenSpan' wx:if="{{item.manageTypeStr}}">{{item.manageTypeStr}}</text>
+        <text class='greenSpan' wx:if="{{item.tempTypeStr}}">{{item.tempTypeStr}}</text>
+        <text class='greenSpan' wx:if="{{item.sqm&&rdc.sqm>0}}">{{item.sqm}}㎡</text>
+        <text class='greenSpan' wx:if="{{item.audit==2}}">已认证</text>
+      </view>
+      <view class='color-99 omg f13'>
+        <text class="iconfont icon-weibiaoti-"></text>{{item.provincename}}-{{item.cityname}}-{{item.areaname}}-{{item.address}}
+      </view>
+    </navigator>
+  </view>

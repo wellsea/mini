@@ -1,0 +1,85 @@
+<!--banner-->
+<view class="container">
+  <swiper class="swiper" indicator-dots autoplay circular indicator-active-color="#e84252" interval="5000" duration="800">
+    <block wx:for="{{rdc.orgfiles}}" wx:for-item="item">
+      <swiper-item>
+        <image src="{{item}}" class="slide-image" mode="aspectFill" bindtap="previewImage" data-index="{{index}}"/>
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class='padding'>
+    <view class='info-title'>【仓库{{rdc.typeText}}】{{rdc.title}}</view>
+    <view class='color-99'>
+      <text class="iconfont icon-weibiaoti-"></text>{{rdc.provincename+"-"+rdc.cityname+"-"+rdc.areaName+"-"+rdc.detlAddress}}
+    </view>
+    <view>
+      <text class="greenSpan" wx:if="rdc.istemperaturestandard==1">冷链委温度达标库</text>
+      <text class="greenSpan" wx:if="rdc.audit==2">已认证</text>
+    </view>
+    <view class='flex-row'>
+      <image class='flex-cell-1 custom' src='{{rdc.partnerInfoEntity.headerurl}}'></image>
+      <view class='flex-cell-2'>
+        <view class='lineH-40'>
+          <text class='b'>{{rdc.partnerInfoEntity.realname}}</text>
+          <text class="color-99">{{rdc.partnerInfoEntity.role==2?"链库合伙人":'链库专员'}}</text>
+        </view>
+        <view class='f20 orange b lineH-40' bindtap='calling'>{{rdc.partnerInfoEntity.telephone}}</view>
+      </view>
+    </view>
+  </view>
+  <view class='flex-row bdt bdb tac'>
+    <view class='flex-cell bdr'>
+      <view class='color-99'>出租面积</view>
+      <view class='orange'>{{rdc.sqm}}㎡</view>
+    </view>
+    <view class='flex-cell bdr'>
+      <view class='color-99'>报价</view>
+      <view class='orange'>{{rdc.unitPrice==0||!rdc.unitPrice?"面议":rdc.unitPrice}}{{rdc.unitPrice == 0 ? "" : "元/" + rdc.unit1 + "·" + rdc.unit2}}</view>
+    </view>
+    <view class='flex-cell bdr'>
+      <view class='color-99'>报价剩余</view>
+      <view class='orange'>{{rdc.sqm}}㎡</view>
+    </view>
+    <view class='flex-cell'>
+      <view class='color-99'>出租库高</view>
+      <view class='orange'>{{rdc.codeLave4?rdc.codeLave4+'m':'--'}}</view>
+    </view>
+  </view>
+  <!--基本信息  -->
+  <view class='info-head padding bdt bdb'>基本信息</view>
+  <view class="flex-row bdb padding">
+      <view class='flex-cell color-99'>信息完整度</view>
+      <view class='flex-cell-3 tar'>{{rdc.infoIntegrity}}%</view>
+  </view>
+  <view class="flex-row bdb padding">
+      <view class='flex-cell color-99'>出租区域</view>
+      <view class='flex-cell-3 tar'>{{rdc.provincename+"-"+rdc.cityname+"-"+rdc.areaName+"-"+rdc.detlAddress}}</view>
+  </view>
+  <view class="flex-row bdb padding">
+      <view class='flex-cell color-99'>经营类型</view>
+      <view class='flex-cell-3 tar'>{{rdc.codeLave1}}</view>
+  </view>
+  <view class="flex-row bdb padding">
+      <view class='flex-cell color-99'>温度类型</view>
+      <view class='flex-cell-3 tar'>{{rdc.codeLave2}}</view>
+  </view>
+  <view class="flex-row bdb padding">
+      <view class='flex-cell color-99'>起租时间</view>
+      <view class='flex-cell-3 tar'>{{rdc.validStartTime}}</view>
+  </view>
+  <view class="flex-row bdb padding">
+      <view class='flex-cell color-99'>截止时间</view>
+      <view class='flex-cell-3 tar'>{{rdc.validEndTime}}</view>
+  </view>
+  <view class="flex-row bdb padding">
+      <view class='flex-cell color-99'>可租期限</view>
+      <view class='flex-cell-3 tar'>{{deadLine[rdc.rentdate]}}</view>
+  </view>
+   <!--其他信息  -->
+  <view class='info-head padding bdt bdb'>其他信息</view>
+  <view class="flex-row bdb padding">
+      <view class='flex-cell color-99'>备注</view>
+      <view class='flex-cell-3 tar'>{{rdc.note?rdc.note:'--'}}</view>
+  </view>
+</view>
+

@@ -1,0 +1,172 @@
+<!--banner-->
+<view class="container">
+  <swiper class="swiper" indicator-dots autoplay circular indicator-active-color="#e84252" interval="5000" duration="1000">
+    <block wx:for="{{movies}}" wx:for-index="index">
+      <swiper-item>
+        <image src="{{item.url}}" class="slide-image" mode="aspectFill" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <!--搜索  -->
+  <view class="searchView">
+    <view class="section tac">
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{searchArray}}">
+        {{searchArray[index]}}
+        <text class='iconfont icon-arrLeft-fill'></text>
+      </picker>
+    </view>
+    <view class="section">
+      <input placeholder="请输入关键词" />
+      <button type="default" size='mini'>
+        搜索
+      </button>
+    </view>
+  </view>
+  <!--tab选项卡  -->
+  <view class='onekey'>
+    <view class="swiper-tab">
+      <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">一键求租</view>
+      <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">一键出租</view>
+    </view>
+
+    <swiper current="{{currentTab}}" class="swiper-box" duration="300" bindchange="bindChange">
+      <!-- 一键求租 -->
+      <swiper-item>
+        <view class="flex-row">
+          <text class="flex-cell">求租区域</text>
+          <input placeholder="请输入求租的区域" class='flex-cell-3' />
+        </view>
+        <view class="flex-row">
+          <text class="flex-cell">求租面积</text>
+          <input placeholder="请输入求租面积/㎡" class='flex-cell-3' />
+        </view>
+        <view class="flex-row">
+          <text class="flex-cell">联系人</text>
+          <input placeholder="联系人姓名" class='flex-cell-3' />
+        </view>
+        <view class="flex-row">
+          <text class="flex-cell">联系电话</text>
+          <input placeholder="请输入有效的手机号" class='flex-cell-3' />
+        </view>
+        <view>
+          <button type="warn" bindtap='onekey'>一键求租</button>
+        </view>
+      </swiper-item>
+      <!-- 一键出租 -->
+      <swiper-item>
+        <view class="flex-row">
+          <text class="flex-cell">仓库名称</text>
+          <input placeholder="请输入真实的仓库名称" class='flex-cell-3' />
+        </view>
+        <view class="flex-row">
+          <text class="flex-cell">可租面积</text>
+          <input placeholder="请输入可出租面积/㎡" class='flex-cell-3' />
+        </view>
+        <view class="flex-row">
+          <text class="flex-cell">联系人</text>
+          <input placeholder="联系人姓名" class='flex-cell-3' />
+        </view>
+        <view class="flex-row">
+          <text class="flex-cell">联系电话</text>
+          <input placeholder="请输入有效的手机号" class='flex-cell-3' />
+        </view>
+        <view>
+          <button type="warn" bindtap='onekey'>一键出租</button>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+  <!--冷库数据  -->
+  <view class="flex-row coldData tac">
+    <view class="flex-cell bdr bdb">
+      <text class="iconfont icon-shiliangzhinengduixiang1 orangeBg"></text>
+      <view>
+        <text class='orange'>962611</text>㎡</view>
+      <view>1月内新增面积</view>
+    </view>
+    <view class="flex-cell bdb">
+      <text class="iconfont icon-cangku orangeBg"></text>
+      <view>
+        <text class='orange'>2008698</text>㎡</view>
+      <view>在线冷库可租面积</view>
+    </view>
+  </view>
+  <view class="flex-row coldData tac">
+    <view class="flex-cell bdr">
+      <text class="iconfont icon-zhichikuahailiangshujuyuan orangeBg"></text>
+      <view>
+        <text class='orange'>143181119</text>㎡</view>
+      <view>在线冷库总面积</view>
+    </view>
+    <view class="flex-cell">
+      <text class="iconfont icon-chengshi orangeBg"></text>
+      <view>
+        <text class='orange'>288</text>个</view>
+      <view>覆盖城市</view>
+    </view>
+  </view>
+  <!--新库推荐  -->
+  <view class="card">
+    <view class="item item-divider">
+      <text>新库推荐</text>
+      <text class="iconfont icon-ai-like green f26"></text>
+      <navigator url="/pages/hotRdc/hotRdc?title='热租冷库资源'" class="fr color-99">更多</navigator>
+    </view>
+    <navigator url="/pages/hotRdcDetail/hotRdcDetail?title={{item.title}}&id={{item.id}}" hover-class="card-hover"
+     class="item item-thumbnail-left" wx:for="{{newRdc}}" wx:for-index="idx" wx:for-item="item">
+      <image class='item-image' src='{{item.logo}}'></image>
+      <view class='b omg item-title'>{{item.title}}</view>
+      <view class='f13'>
+        <text class='orange b'>{{item.sqm}}</text>㎡
+        <text class='orange b'>{{item.unitPrice==0?'面议':item.unitPrice}}</text>{{item.unitPrice!=0?item.unit:''}}
+      </view>
+      <view class='f13'>{{item.storageType?item.storageType:'--'}}</view>
+      <view class='color-99 omg f13'>
+        <text class="iconfont icon-weibiaoti-"></text>{{item.provincename}}-{{item.cityname}}-{{item.areaName}}-{{item.detlAddress}}
+      </view>
+    </navigator>
+  </view>
+  <!--热租冷库  -->
+  <view class="card">
+    <view class="item item-divider">
+      <text>热租冷库</text>
+      <text class="iconfont icon-huobao orange f26"></text>
+      <navigator url="/pages/hotRdc/hotRdc?title='热租冷库资源'" class="fr color-99">更多</navigator>
+    </view>
+    <navigator url="/pages/hotRdcDetail/hotRdcDetail?title={{item.title}}&id={{item.id}}" hover-class="card-hover"
+     class="item item-thumbnail-left" wx:for="{{hotRdc}}" wx:for-index="idx" wx:for-item="item">
+      <image class='item-image' src='{{item.logo}}'></image>
+      <view class='b omg item-title'>{{item.title}}</view>
+      <view class='f13'>
+        <text class='orange b'>{{item.sqm}}</text>㎡
+        <text class='orange b'>{{item.unitPrice==0?'面议':item.unitPrice}}</text>{{item.unitPrice!=0?item.unit:''}}
+      </view>
+      <view class='f13'>{{item.codeLave1?item.codeLave1:'--'}}-{{item.codeLave2?item.codeLave2:'--'}}</view>
+      <view class='color-99 omg f13'>
+        <text class="iconfont icon-weibiaoti-"></text>{{item.provincename}}-{{item.cityname}}-{{item.areaName}}-{{item.detlAddress}}
+      </view>
+    </navigator>
+  </view>
+  <!--达标冷库  -->
+  <view class="card">
+    <view class="item item-divider">
+      <text>温度达标</text>
+      <text class="iconfont icon-cnlonghubang gold f26"></text>
+      <navigator url="/pages/list/list?title=0" class="fr color-99">更多</navigator>
+    </view>
+    <view class="item item-thumbnail-left" wx:for="{{standRdc}}" wx:for-index="idx" wx:for-item="item">
+      <image class='item-image' src='{{item.logo}}'></image>
+      <view class='b omg item-title gold'>{{item.name?item.name:'--'}}</view>
+      <view class='f13'>
+        <text class='greenSpan'>冷链委温度达标库</text>
+      </view>
+      <view class='f13'>
+        <text class='greenSpan'>已认证</text>
+      </view>
+      <view class='color-99 omg f13'>
+        <text class="iconfont icon-weibiaoti-"></text>{{item.provincename}}-{{item.cityname}}-{{item.areaName}}-{{item.address}}
+      </view>
+    </view>
+  </view>
+</view>
+

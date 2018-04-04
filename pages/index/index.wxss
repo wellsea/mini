@@ -1,0 +1,124 @@
+/**index.wxss**/
+.swiper {
+  height: 400rpx;
+  width: 100%;
+}
+
+.swiper image {
+  height: 100%;
+  width: 100%;
+}
+
+.searchView {
+  -webkit-box-shadow: 0 3px 10px 0 #c3c3c3;
+  box-shadow: 0 3px 10px 0 #c3c3c3;
+  background-color: #fff;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  width: 96%;
+  height: 80rpx;
+  line-height: 80rpx;
+  display: flex;
+  display: -webkit-flex;
+  padding: 8rpx;
+}
+
+.searchView .section {
+  flex: 1;
+}
+
+.searchView .section+.section {
+  flex: 2;
+}
+
+.searchView .section input {
+  display: inline-block;
+  width: 70%;
+  vertical-align: middle;
+  padding: 0;
+}
+
+.searchView .section button {
+  display: inline-block;
+  vertical-align: middle;
+  width: 28%;
+  padding: 0 ;
+}
+
+
+/*一键出租  */
+
+.onekey {
+  width: 96%;
+  margin: 30rpx auto;
+  border-radius: 2px;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.swiper-tab {
+  text-align: center;
+  height: 100rpx;
+  line-height:100rpx;
+  background: #f5f5f5;
+}
+
+.swiper-tab-list {
+  float: left;
+  width:50%;
+  color: #777;
+}
+
+.on {
+  color: #e84252;
+  background: #fff;
+}
+
+.swiper-box {
+  display: block;
+  height: 540rpx;
+  width: 100%;
+  overflow: hidden;
+  padding: 0 20rpx;
+
+  box-sizing: border-box;
+  -webkit-box-sizing:  border-box;
+}
+.swiper-box button{
+  margin: 10px 0;
+}
+.swiper-box  .flex-row {
+  height: 100rpx;
+  line-height:100rpx;
+  border-bottom: 1px solid #ddd;
+}
+
+
+.flex-cell-3 {
+  flex: 3;
+}
+/*冷库数据*/
+.coldData .orangeBg{
+    display: inline-block;
+    font-size: 36rpx;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    border-radius: 50%;
+    width: 80rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    margin-top: 20rpx;
+}
+.coldData view{
+   padding: 10rpx 0;
+}
+.coldData .orange{
+  font-size: 36rpx;
+}
+.item-divider text{
+  margin-right: 20rpx;
+}
