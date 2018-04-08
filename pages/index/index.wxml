@@ -1,7 +1,7 @@
 <!--banner-->
 <view class="container">
   <swiper class="swiper" indicator-dots autoplay circular indicator-active-color="#e84252" interval="5000" duration="1000">
-    <block wx:for="{{movies}}" wx:for-index="index">
+    <block wx:for="{{banners}}" wx:for-index="index">
       <swiper-item>
         <image src="{{item.url}}" class="slide-image" mode="aspectFill" />
       </swiper-item>
@@ -110,7 +110,7 @@
     <view class="item item-divider">
       <text>新库推荐</text>
       <text class="iconfont icon-ai-like green f26"></text>
-      <navigator url="/pages/hotRdc/hotRdc?title='热租冷库资源'" class="fr color-99">更多</navigator>
+      <text bindtap='onTapHot' class="fr color-99">更多</text>
     </view>
     <navigator url="/pages/hotRdcDetail/hotRdcDetail?title={{item.title}}&id={{item.id}}" hover-class="card-hover"
      class="item item-thumbnail-left" wx:for="{{newRdc}}" wx:for-index="idx" wx:for-item="item">
@@ -131,7 +131,7 @@
     <view class="item item-divider">
       <text>热租冷库</text>
       <text class="iconfont icon-huobao orange f26"></text>
-      <navigator url="/pages/hotRdc/hotRdc?title='热租冷库资源'" class="fr color-99">更多</navigator>
+      <text bindtap='onTapHot' class="fr color-99">更多</text>
     </view>
     <navigator url="/pages/hotRdcDetail/hotRdcDetail?title={{item.title}}&id={{item.id}}" hover-class="card-hover"
      class="item item-thumbnail-left" wx:for="{{hotRdc}}" wx:for-index="idx" wx:for-item="item">

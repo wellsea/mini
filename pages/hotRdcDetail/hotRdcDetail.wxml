@@ -6,6 +6,11 @@
         <image src="{{item}}" class="slide-image" mode="aspectFill" bindtap="previewImage" data-index="{{index}}"/>
       </swiper-item>
     </block>
+     <block wx:if="{{rdc.orgfiles==0}}">
+      <swiper-item>
+        <image src="http://139.196.189.93:8089/app/rdcHeader.jpg" class="slide-image" mode="aspectFill"/>
+      </swiper-item>
+    </block>
   </swiper>
   <view class='padding'>
     <view class='info-title'>【仓库{{rdc.typeText}}】{{rdc.title}}</view>

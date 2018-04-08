@@ -1,6 +1,5 @@
-// pages/list/list.js
 const app = getApp();
-const getList=function(that,stand){  
+const getList = function (that) {
   if (that.data.pageIndex >= that.data.totalPages + 1) {
     that.setData({
       complete: true
@@ -8,11 +7,11 @@ const getList=function(that,stand){
     return
   };
   wx.request({//初始化温度类型
-    url: "https://lianku.org.cn/i/rdc/yu_getRdcList",
+    url: "https://lianku.org.cn/i/ShareRdcController/GetSERDCList",
     data: {
       pageNum: that.data.pageIndex,
       pageSize: 10,
-      istemperaturestandard: stand
+      dataType: 3
     },
     success: res => {
       let rdc = res.data.data;
@@ -37,8 +36,8 @@ Page({
    */
   data: {
     rdc: [],
-    pageIndex:1,
-    totalPages:1,
+    pageIndex: 1,
+    totalPages: 1,
     title: '',
     complete: false
   },
@@ -46,9 +45,9 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {    
+  onLoad: function (options) {
     wx.setNavigationBarTitle({
-      title: '冷库资源'
+      title: '热租冷库'
     })
     wx.showLoading({
       title: '加载中'
@@ -76,6 +75,6 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+
   }
 })

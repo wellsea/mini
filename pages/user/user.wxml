@@ -1,2 +1,47 @@
 <!--pages/user/user.wxml-->
-<text>pages/user/user.wxml</text>
+<view class='userinfo tac'>
+  <image src='../../images/homeBg.png'></image>
+  <view class='usermsg'>
+    <block wx:if="{{!hasUserInfo && canIUse}}">
+    <view class='tac'>
+      <image src='http://139.196.189.93:8089/app/userimg.jpg'></image>      
+        <button open-type="getUserInfo" bindgetuserinfo="getUserInfo">微信登录</button>
+      </view>
+    </block>
+
+    <block wx:else>      
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      <view class='tac'>
+      <text class="orange">{{userInfo.nickName}}</text>
+      </view>
+    </block>
+  </view>
+</view>
+<view class='flex-row bdb padding'>
+  <view class='flex-cell tac'>
+  <text class="iconfont icon-chengshi f26 orange"></text>
+  <view>一键求租</view>
+  </view>
+  <view class='flex-cell tac'>
+  <text class="iconfont icon-fangwumianji1 f26 orange"></text>
+  <view>一键出租</view>
+  </view>
+</view>
+<view class='padding bdb'>
+  <text class="iconfont icon-chengshi3 f24 orange"></text>我的冷库
+</view>
+<view class='padding bdb'>
+  <text class="iconfont icon-caidai f24 orange"></text>我的需求
+</view>
+<view class='padding bdb'>
+  <text class="iconfont icon-guanzhu f24 orange"></text>我的收藏
+</view>
+<view class='padding bdb'>
+  <text class="iconfont icon-yijianfankui f24 orange"></text>意见反馈
+</view>
+<view class='padding bdb'>
+  <text class="iconfont icon-zhuanye f24 orange"></text>关于链库
+</view>
+<view class='padding bdb'>
+  <text class="iconfont icon-dianhua2 f24 orange"></text>联系我们
+</view>

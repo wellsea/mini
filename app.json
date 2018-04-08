@@ -2,7 +2,7 @@
   "pages": [
     "pages/index/index",
     "pages/list/list",
-    "pages/msg/msg",
+    "pages/hot/hot",
     "pages/user/user",
     "pages/hotRdc/hotRdc",
     "pages/hotRdcDetail/hotRdcDetail",
@@ -17,7 +17,7 @@
   "tabBar": {
     "color": "#a9b7b7",
     "selectedColor": "#e84252",
-    "borderStyle": "white",
+    "borderStyle": "#efefef",
     "list": [
       {
         "selectedIconPath": "images/home1.png",
@@ -32,10 +32,10 @@
         "text": "资源"
       },
       {
-        "selectedIconPath": "images/msg1.png",
-        "iconPath": "images/msg.png",
-        "pagePath": "pages/msg/msg",
-        "text": "消息"
+        "selectedIconPath": "images/hot1.png",
+        "iconPath": "images/hot.png",
+        "pagePath": "pages/hot/hot",
+        "text": "热租"
       },
       {
         "selectedIconPath": "images/user1.png",

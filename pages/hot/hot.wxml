@@ -1,0 +1,19 @@
+<!--pages/hot/hot.wxml-->
+<view class="card">
+  <navigator hover-class="card-hover" url="/pages/hotRdcDetail/hotRdcDetail?title={{item.title}}&id={{item.id}}" class="item item-thumbnail-left" wx:for="{{rdc}}" wx:for-index="idx" wx:for-item="item">
+    <image class='item-image' src='{{item.logo}}'></image>
+    <view class='b omg item-title omg'>[出租]{{item.title}}</view>
+    <view class='f13'>
+        <text>价格:</text>
+        <text class="orange b">{{item.unitPrice!='0.00' && item.unitPrice!=undefined?item.unitPrice+'元/㎡/天':'面议'}}</text>
+    </view>
+    <view class='f13 omg'>
+      <text class='greenSpan'>{{item.codeLave2}}</text>
+      <text class='greenSpan'>{{item.codeLave1}}</text>
+    </view>
+    <view class='color-99 omg f13'>
+      <text class="iconfont icon-weibiaoti-"></text>{{item.provincename}}-{{item.cityname}}-{{item.areaName}}-{{item.detlAddress}}
+    </view>
+  </navigator>
+</view>
+  <view class="tac padding margin color-99 f13" wx:if="{{complete}}">已经到达天边了~~~</view> 

@@ -21,3 +21,4 @@
       </view>
     </navigator>
   </view>
+  <view class="tac padding margin color-99 f13" wx:if="{{complete}}">已经到达天边了~~~</view> 

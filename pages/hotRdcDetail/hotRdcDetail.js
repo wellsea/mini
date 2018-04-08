@@ -25,7 +25,7 @@ Page({
         if (res.data.success){
           let rdc = res.data.entity;
           if (!rdc.orgfiles) {
-            rdc.orgfiles = rdc.files;
+            rdc.orgfiles = rdc.files ? rdc.files : [];
           }
           rdc.partnerInfoEntity.telephone = rdc.partnerInfoEntity.telephone.substring(0, 3) + '-' + rdc.partnerInfoEntity.telephone.substring(3, 7) + '-' +rdc.partnerInfoEntity.telephone.substring(7, 11);
           that.setData({
