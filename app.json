@@ -5,7 +5,8 @@
     "pages/msg/msg",
     "pages/user/user",
     "pages/hotRdc/hotRdc",
-    "pages/hotRdcDetail/hotRdcDetail"
+    "pages/hotRdcDetail/hotRdcDetail",
+    "pages/rdcDetail/rdcDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -60,7 +60,12 @@ Page({
   onTap: function (event) {
     app.stand = 1;
     wx.switchTab({
-      url: "/pages/list/list"
+      url: "/pages/list/list",
+      success:function(e){
+        var page = getCurrentPages().pop();
+        if (page == undefined || page == null) return;
+        page.onLoad();
+      }
     });
   },
   onLoad: function () {

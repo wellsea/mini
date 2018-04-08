@@ -10,7 +10,8 @@
   <view class='padding'>
     <view class='info-title'>【仓库{{rdc.typeText}}】{{rdc.title}}</view>
     <view class='color-99'>
-      <text class="iconfont icon-weibiaoti-"></text>{{rdc.provincename+"-"+rdc.cityname+"-"+rdc.areaName+"-"+rdc.detlAddress}}
+      <text class="iconfont icon-weibiaoti-"></text>
+      {{rdc.provincename?rdc.provincename:'--'}}-{{rdc.cityname?rdc.cityname:'--'}}-{{rdc.areaName?rdc.areaName:'--'}}-{{rdc.detlAddress?rdc.detlAddress:'--'}}
     </view>
     <view>
       <text class="greenSpan" wx:if="rdc.istemperaturestandard==1">冷链委温度达标库</text>
@@ -53,7 +54,7 @@
   </view>
   <view class="flex-row bdb padding">
       <view class='flex-cell color-99'>出租区域</view>
-      <view class='flex-cell-3 tar'>{{rdc.provincename+"-"+rdc.cityname+"-"+rdc.areaName+"-"+rdc.detlAddress}}</view>
+      <view class='flex-cell-3 tar'>{{rdc.provincename?rdc.provincename:'--'}}-{{rdc.cityname?rdc.cityname:'--'}}-{{rdc.areaName?rdc.areaName:'--'}}-{{rdc.detlAddress?rdc.detlAddress:'--'}}</view>
   </view>
   <view class="flex-row bdb padding">
       <view class='flex-cell color-99'>经营类型</view>

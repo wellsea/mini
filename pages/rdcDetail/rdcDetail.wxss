@@ -1,4 +1,3 @@
-/* pages/hotRdcDetail/hotRdcDetail.wxss */
 .swiper {
   height: 520rpx;
   width: 100%;

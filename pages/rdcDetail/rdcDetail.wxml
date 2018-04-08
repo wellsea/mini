@@ -1,0 +1,163 @@
+<!--banner-->
+<view class="container">
+  <swiper class="swiper" indicator-dots autoplay circular indicator-active-color="#e84252" interval="5000" duration="800">
+    <block wx:for="{{rdc.orginalPics}}" wx:for-item="item">
+      <swiper-item>
+        <image src="{{item.location}}" class="slide-image" mode="aspectFill" bindtap="previewImage" data-index="{{index}}"/>
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class='padding'>
+    <view class='info-title'>{{rdc.searchNum}}</view>
+    <view class='color-99'>
+      <text class="iconfont icon-weibiaoti-"></text>{{rdc.provinceName?rdc.provinceName:'--'}}-{{rdc.cityName?rdc.cityName:'--'}}-{{rdc.areaName?rdc.areaName:'--'}}--{{rdc.address?rdc.address:'--'}}
+    </view>
+    <view>
+      <text class="greenSpan" wx:if="rdc.istemperaturestandard==1">冷链委温度达标库</text>
+      <text class="greenSpan" wx:if="rdc.audit==2">已认证</text>
+    </view>
+    <view class='flex-row'>
+      <image class='flex-cell-1 custom' src='{{rdc.partnerInfoEntity.headerurl}}'></image>
+      <view class='flex-cell-2'>
+        <view class='lineH-40'>
+          <text class='b'>{{rdc.partnerInfoEntity.realname}}</text>
+          <text class="color-99">{{rdc.partnerInfoEntity.role==2?"链库合伙人":'链库专员'}}</text>
+        </view>
+        <view class='f20 orange b lineH-40' bindtap='calling'>{{rdc.partnerInfoEntity.telephone}}</view>
+      </view>
+    </view>
+  </view>
+  <view class='flex-row bdt bdb tac'>
+    <view class='flex-cell bdr'>
+      <view class='color-99'>价格</view>
+      <view class='orange'>{{rdc.unitPrice&&rdc.unitPrice>0?rdc.unitPrice+'元/月/㎡':'面议'}}</view>
+    </view>
+    <view class='flex-cell bdr'>
+      <view class='color-99'>空置容量</view>
+      <view class='orange'>
+        {{rdc.rentSqm==0||!rdc.rentSqm?"--":rdc.rentSqm}}{{rdc.rentSqm&&rdc.rentSqm!=0?rdc.rentcapacityunit:''}}
+      </view>
+    </view>
+    <view class='flex-cell bdr'>
+      <view class='color-99'>总容量</view>
+      <view class='orange'>
+      {{!rdc.totalcapacity||rdc.totalcapacity==0?"--":rdc.totalcapacity}}{{rdc.totalcapacity&&rdc.totalcapacity!=0?rdc.capacityunit:''}}
+      </view>
+    </view>
+    <view class='flex-cell'>
+      <view class='color-99'>净高</view>
+      <view class='orange'>
+      {{!rdc.height||rdc.height==0?"--":rdc.height}}{{rdc.height&&rdc.height!=0?'m':''}}
+      </view>
+    </view>
+  </view>
+  <view class='flex-row bdb tac'>
+    <view class='flex-cell bdr' wx:if="{{rdc.TDcertificate==1}}">
+      <text class="iconfont icon-tudiquanzheng orange f26">
+      </text>
+      <view>土地证</view>
+    </view>
+     <view class='flex-cell bdr' wx:if="{{rdc.CQcertificate==1}}">
+      <text class="iconfont icon-fangwuchanquangongzhengshu orange f26">
+      </text>
+      <view>产权证</view>
+    </view>
+     <view class='flex-cell bdr' wx:if="{{rdc.XFcertificate==1}}">
+      <text class="iconfont icon-xiaofang1 orange f26">
+      </text>
+      <view>消防证</view>
+    </view>
+  </view>
+  <!--基本信息  -->
+  <view class='info-head padding bdt bdb'>基本信息</view>
+  <view class="flex-row bdb padding">
+      <view class='flex-cell color-99'>信息完整度</view>
+      <view class='flex-cell-3 tar'>{{rdc.infoIntegrity}}%</view>
+  </view>
+  <view class="flex-row bdb padding">
+      <view class='flex-cell color-99'>总面积</view>
+      <view class='flex-cell-3 tar'>{{!rdc.area||rdc.area==0?"--":rdc.area+"㎡"}}</view>
+  </view>
+  <view class="flex-row bdb padding">
+      <view class='flex-cell color-99'>经营类型</view>
+      <view class='flex-cell-3 tar'>{{rdc.manageType}}</view>
+  </view>
+  <view class="flex-row bdb padding">
+      <view class='flex-cell color-99'>温度类型</view>
+      <view class='flex-cell-3 tar'>{{rdc.temperType}}</view>
+  </view>
+  <view class="flex-row bdb padding">
+      <view class='flex-cell color-99'>存放类型</view>
+      <view class='flex-cell-3 tar'>{{rdc.storageType}}</view>
+  </view>
+  <view class="flex-row bdb padding">
+      <view class='flex-cell color-99'>建筑结构</view>
+      <view class='flex-cell-3 tar'>{{rdc.structure}}</view>
+  </view>
+  <view class="flex-row bdb padding">
+      <view class='flex-cell color-99'>制冷剂类型</view>
+      <view class='flex-cell-3 tar'>{{rdc.storageRefreg}}</view>
+  </view>
+  <view class="flex-row bdb padding">
+      <view class='flex-cell color-99'>存放产品品类</view>
+      <view class='flex-cell-3 tar'>{{!rdc.productcategory||rdc.productcategory==''?"--":rdc.productcategory}}</view>
+  </view>
+   <!--其他信息  -->
+  <view class='info-head padding bdt bdb'>其他信息</view>
+  <view class="flex-row bdb padding">
+      <view class='flex-cell color-99'>冷库楼层</view>
+      <view class='flex-cell-3 tar' wx:if="{{!rdc.buildtype ||rdc.buildtype==0}}">--</view>
+      <view class='flex-cell-3 tar' wx:else="{{rdc.buildtype>0}}">{{rdc.buildtype==1?"1":rdc.buildfloors}}层</view>
+  </view>
+  <view class="flex-row bdb padding">
+      <view class='flex-cell color-99'>常温库</view>
+      <view class='flex-cell-3 tar' wx-if="{{!rdc.capacity1||rdc.capacity1==0}}">--</view>
+      <view class='flex-cell-3 tar' wx:else="{{rdc.capacity1>0}}">{{rdc.capacity1}}{{!rdc.coldTruck1 ||rdc.coldTruck1!=0||rdc.coldTruck1!=''?"m³":rdc.coldTruck1}}</view>
+  </view>
+  <view class="flex-row bdb padding">
+      <view class='flex-cell color-99'>恒温库</view>
+      <view class='flex-cell-3 tar' wx:if="{{!rdc.capacity2||rdc.capacity2==0}}">--</view>
+      <view class='flex-cell-3 tar' wx:else="{{rdc.capacity2>0}}">{{rdc.capacity2}}{{!rdc.coldTruck2 ||rdc.coldTruck2!=0||rdc.coldTruck2!=''?"m³":rdc.coldTruck2}}</view>
+  </view>
+  <view class="flex-row bdb padding">
+      <view class='flex-cell color-99'>冷藏库</view>
+      <view class='flex-cell-3 tar' wx:if="{{!rdc.capacity3||rdc.capacity3==0}}">--</view>
+      <view class='flex-cell-3 tar' wx:else="{{rdc.capacity3>0}}">{{rdc.capacity3}}{{!rdc.coldTruck3 ||rdc.coldTruck3!=0||rdc.coldTruck3!=''?"m³":rdc.coldTruck3}}</view>
+  </view>
+  <view class="flex-row bdb padding">
+      <view class='flex-cell color-99'>冷冻库</view>
+      <view class='flex-cell-3 tar' wx:if="{{!rdc.capacity4||rdc.capacity4==0}}">--</view>
+      <view class='flex-cell-3 tar' wx:else="{{rdc.capacity4>0}}">{{rdc.capacity4}}{{!rdc.coldTruck4 ||rdc.coldTruck4!=0||rdc.coldTruck4!=''?"m³":rdc.coldTruck4}}</view>
+  </view>
+  <view class="flex-row bdb padding">
+      <view class='flex-cell color-99'>企业网址</view>
+      <view class='flex-cell-3 tar'>{{!rdc.website?"--":rdc.website}}</view>
+  </view>
+  <view class="flex-row bdb padding">
+      <view class='flex-cell color-99'>具备消防资质</view>
+      <view class='flex-cell-3 tar' wx:if="{{rdc.fireControl==1}}">具备</view>
+      <view class='flex-cell-3 tar' wx:elif="{{rdc.fireControl==2}}">不具备</view>
+      <view class='flex-cell-3 tar' wx:else="{{!rdc.fireControl}}">--</view>
+  </view>
+  <view class="flex-row bdb padding">
+      <view class='flex-cell color-99'>有无理货区</view>
+      <view class='flex-cell-3 tar'>{{rdc.lihuoRoom==1?'有':'无'}}</view>
+  </view>
+  <view class="flex-row bdb padding">
+      <view class='flex-cell color-99'>有无封闭月台</view>
+      <view class='flex-cell-3 tar'>{{rdc.platform==1?'有':'无'}}</view>
+  </view>
+  <view class="flex-row bdb padding">
+      <view class='flex-cell color-99'>有无温度记录</view>
+      <view class='flex-cell-3 tar'>{{rdc.temperRecord==1?'有':'无'}}</view>
+  </view>
+  <view class="flex-row bdb padding">
+      <view class='flex-cell color-99'>周边设施</view>
+      <view class='flex-cell-3 tar'>{{!rdc.facility||rdc.facility==''||rdc.facility=='undefined'?"--":rdc.facility}}</view>
+  </view>
+  <view class="flex-row bdb padding">
+      <view class='flex-cell color-99'>补充信息</view>
+      <view class='flex-cell-3 tar'>{{!rdc.remark||rdc.remark==''||rdc.remark=='undefined'?"--":rdc.remark}}</view>
+  </view>
+</view>
+

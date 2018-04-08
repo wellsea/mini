@@ -1,6 +1,6 @@
 <!--pages/list/list.wxml-->
 <view class="card">
-    <navigator  hover-class="card-hover"
+    <navigator  hover-class="card-hover" url="/pages/rdcDetail/rdcDetail?title={{item.name}}&id={{item.id}}"
      class="item item-thumbnail-left" wx:for="{{rdc}}" wx:for-index="idx" wx:for-item="item">
       <image class='item-image' src='{{item.logo}}'></image>
       <view class='b omg item-title omg'>{{item.name}}</view>
