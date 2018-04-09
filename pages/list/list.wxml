@@ -20,7 +20,7 @@
       </picker>
     </view>
     <form class='flex-cell-3' bindsubmit="search">
-      <input placeholder="请输入关键词" name="keyword" bindconfirm="search" />
+      <input placeholder="请输入关键词" name="keyword" bindconfirm="search" style='background:#efefef'/>
     </form>
   </view>
   <view class='flex-row selectGroup'>

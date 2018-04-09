@@ -90,6 +90,7 @@ Page({
           this.setData({
             rdc: [],
             pageIndex: 1,
+            totalPages: 1,
             city: list,
             cindex: 0,
             aindex: 0,
@@ -102,6 +103,7 @@ Page({
       this.setData({
         rdc: [],
         pageIndex: 1,
+        totalPages: 1,
         city: [{ cityID: '', cityName: '不限', provinceID: -1 }],
         area: [{ areaid: '', areaName: '不限', cityid: '', id: -1 }],
         cindex: 0,
@@ -131,6 +133,7 @@ Page({
           this.data.area = [];
           this.setData({
             rdc: [],
+            totalPages: 1,
             pageIndex: 1,
             area: list,
             aindex: 0
@@ -141,6 +144,7 @@ Page({
     }else{
       this.setData({
         rdc: [],
+        totalPages: 1,
         pageIndex: 1,
         area: [{ areaid: "", areaName: '不限', cityid: "", id: -1 }],
         aindex: 0
@@ -155,6 +159,7 @@ Page({
     this.setData({
       rdc: [],
       pageIndex: 1,
+      totalPages: 1,
       aindex: e.detail.value
     })
     getList(this, app.stand, '', this.data.auditList[this.data.uindex].id, this.data.city[this.data.cindex].cityID, this.data.keyword, this.data.manageTypeList[this.data.mindex].id, this.data.province[this.data.pindex].provinceId, this.data.sqmList[this.data.sindex].id, this.data.tempTypeList[this.data.tindex].id)
@@ -165,6 +170,7 @@ Page({
     this.setData({
       rdc: [],
       pageIndex: 1,
+      totalPages: 1,
       mindex: e.detail.value
     })
     getList(this, app.stand, '', this.data.auditList[this.data.uindex].id, this.data.city[this.data.cindex].cityID, this.data.keyword, this.data.manageTypeList[this.data.mindex].id, this.data.province[this.data.pindex].provinceId, this.data.sqmList[this.data.sindex].id, this.data.tempTypeList[this.data.tindex].id)
@@ -175,6 +181,7 @@ Page({
     this.setData({
       rdc: [],
       pageIndex: 1,
+      totalPages: 1,
       tindex: e.detail.value
     })
     getList(this, app.stand, '', this.data.auditList[this.data.uindex].id, this.data.city[this.data.cindex].cityID, this.data.keyword, this.data.manageTypeList[this.data.mindex].id, this.data.province[this.data.pindex].provinceId, this.data.sqmList[this.data.sindex].id, this.data.tempTypeList[this.data.tindex].id)
@@ -185,6 +192,7 @@ Page({
     this.setData({
       rdc: [],
       pageIndex: 1,
+      totalPages: 1,
       sindex: e.detail.value
     })
     getList(this, app.stand, '', this.data.auditList[this.data.uindex].id, this.data.city[this.data.cindex].cityID, this.data.keyword, this.data.manageTypeList[this.data.mindex].id, this.data.province[this.data.pindex].provinceId, this.data.sqmList[this.data.sindex].id, this.data.tempTypeList[this.data.tindex].id)
@@ -195,6 +203,7 @@ Page({
     this.setData({
       rdc: [],
       pageIndex: 1,
+      totalPages: 1,
       uindex: e.detail.value
     })
     getList(this, app.stand, '', this.data.auditList[this.data.uindex].id, this.data.city[this.data.cindex].cityID, this.data.keyword, this.data.manageTypeList[this.data.mindex].id, this.data.province[this.data.pindex].provinceId, this.data.sqmList[this.data.sindex].id, this.data.tempTypeList[this.data.tindex].id)
@@ -203,6 +212,7 @@ Page({
     this.setData({
       rdc: [],
       pageIndex: 1,
+      totalPages: 1,
       keyword: e.detail.value
     })
     getList(this, app.stand, '', this.data.auditList[this.data.uindex].id, this.data.city[this.data.cindex].cityID, this.data.keyword, this.data.manageTypeList[this.data.mindex].id, this.data.province[this.data.pindex].provinceId, this.data.sqmList[this.data.sindex].id, this.data.tempTypeList[this.data.tindex].id)
