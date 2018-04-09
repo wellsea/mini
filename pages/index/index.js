@@ -15,7 +15,8 @@ Page({
     currentTab: 0,
     newRdc:[],
     hotRdc:[],
-    standRdc:[]
+    standRdc:[],
+    info:''
   },
   //事件处理函数
   bindPickerChange: function (e) {
@@ -31,12 +32,69 @@ Page({
     that.setData({ currentTab: e.detail.current });
 
   },
-  onekey:function(e){
-    wx.showToast({
-      title: '成功',
-      icon: 'success',
-      duration: 2000
-    })
+  formSubmit:function(e){
+    var that = this;
+    console.log(that.data.currentTab);
+    var errMsg = null;
+    var flag = true;
+    var phoneNumRex = /^1[34578]\d{9}$/;
+    var rentData={};
+    rentData.sqm = e.detail.value.sqm;
+    rentData.contacts = e.detail.value.contacts;
+    rentData.tel = e.detail.value.tel;
+    rentData.name = e.detail.value.name;
+    rentData.areaName = e.detail.value.areaName;
+    if (!e.detail.value.sqm) {
+      errMsg = "面积输入有误";
+      flag = false;
+    }
+    if (!e.detail.value.contacts) {
+      errMsg = "联系人输入有误";
+      flag = false;
+    }
+    if (!e.detail.value.tel || !phoneNumRex.test(e.detail.value.tel)) {
+      errMsg = "手机号输入有误";
+      flag = false;
+    }
+    if (that.data.currentTab == 1) {
+      rentData.typeCode=0;
+      if (!e.detail.value.name) {
+        errMsg = "仓库名称输入有误";
+        flag = false;
+      }
+    } else {
+      rentData.typeCode = 1;
+      if (!e.detail.value.areaName) {
+        errMsg = "求租区域输入有误";
+        flag = false;
+      }
+    }
+    if (flag) {
+      wx.request({
+        url: app.host +'/i/ShareRdcController/quickDemand',
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        method: "POST",
+        data: rentData,
+        success: function (res) {
+          if (res.data.success) {
+            wx.showToast({
+              title: res.data.message,
+              icon: 'none',
+              duration: 2000
+            })
+            that.setData({info:''});
+          }
+        }
+      })
+    } else {
+      wx.showToast({
+        title: errMsg,
+        icon: 'none',
+        duration: 2000
+      })
+    }
   },
   /** 
    * 点击tab切换 

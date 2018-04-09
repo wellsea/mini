@@ -1,1 +1,4 @@
 /* pages/list/list.wxss */
+.selectGroup>div{
+  width: 20%;
+}

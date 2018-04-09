@@ -32,47 +32,51 @@
     <swiper current="{{currentTab}}" class="swiper-box" duration="300" bindchange="bindChange">
       <!-- 一键求租 -->
       <swiper-item>
+      <form bindsubmit="formSubmit">
         <view class="flex-row">
           <text class="flex-cell">求租区域</text>
-          <input placeholder="请输入求租的区域" class='flex-cell-3' />
+          <input placeholder="请输入求租的区域" class='flex-cell-3' name="areaName" value='{{info}}'/>
         </view>
         <view class="flex-row">
           <text class="flex-cell">求租面积</text>
-          <input placeholder="请输入求租面积/㎡" class='flex-cell-3' />
+          <input placeholder="请输入求租面积/㎡" class='flex-cell-3' name="sqm"  value='{{info}}' type='digit'/>
         </view>
         <view class="flex-row">
           <text class="flex-cell">联系人</text>
-          <input placeholder="联系人姓名" class='flex-cell-3' />
+          <input placeholder="联系人姓名" class='flex-cell-3' name="contacts" value='{{info}}'/>
         </view>
         <view class="flex-row">
           <text class="flex-cell">联系电话</text>
-          <input placeholder="请输入有效的手机号" class='flex-cell-3' />
+          <input placeholder="请输入有效的手机号" class='flex-cell-3' name="tel" value='{{info}}' maxlength='11' type='number'/>
         </view>
         <view>
-          <button type="warn" bindtap='onekey'>一键求租</button>
+          <button type="warn"  formType="submit">一键求租</button>
         </view>
+        </form>
       </swiper-item>
       <!-- 一键出租 -->
       <swiper-item>
+      <form bindsubmit="formSubmit">
         <view class="flex-row">
           <text class="flex-cell">仓库名称</text>
-          <input placeholder="请输入真实的仓库名称" class='flex-cell-3' />
+          <input placeholder="请输入真实的仓库名称" class='flex-cell-3' name="name" value='{{info}}'/>
         </view>
         <view class="flex-row">
           <text class="flex-cell">可租面积</text>
-          <input placeholder="请输入可出租面积/㎡" class='flex-cell-3' />
+          <input placeholder="请输入可出租面积/㎡" class='flex-cell-3' name="sqm" value='{{info}}' type='digit'/>
         </view>
         <view class="flex-row">
           <text class="flex-cell">联系人</text>
-          <input placeholder="联系人姓名" class='flex-cell-3' />
+          <input placeholder="联系人姓名" class='flex-cell-3' name="contacts" value='{{info}}'/>
         </view>
         <view class="flex-row">
           <text class="flex-cell">联系电话</text>
-          <input placeholder="请输入有效的手机号" class='flex-cell-3' />
+          <input placeholder="请输入有效的手机号" class='flex-cell-3' name="tel" value='{{info}}' maxlength='11' type='number'/>
         </view>
         <view>
-          <button type="warn" bindtap='onekey'>一键出租</button>
+          <button type="warn"  formType="submit">一键出租</button>
         </view>
+        </form>
       </swiper-item>
     </swiper>
   </view>

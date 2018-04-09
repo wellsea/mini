@@ -1,6 +1,6 @@
 // pages/list/list.js
 const app = getApp();
-const getList=function(that,stand){  
+const getList = function (that, stand, areaid, audit, cityid, keyword, managetype, provinceid, sqm, storagetempertype){  
   if (that.data.pageIndex >= that.data.totalPages + 1) {
     that.setData({
       complete: true
@@ -12,7 +12,15 @@ const getList=function(that,stand){
     data: {
       pageNum: that.data.pageIndex,
       pageSize: 10,
-      istemperaturestandard: stand
+      istemperaturestandard: stand ? stand : '',
+      areaid: areaid ? areaid : '',
+      audit: audit ? audit : '',
+      cityid: cityid ? cityid : '',
+      keyword: keyword ? keyword : '',
+      managetype: managetype ? managetype : '',
+      provinceid: provinceid ? provinceid : '',
+      sqm: sqm ? sqm : '',
+      storagetempertype: storagetempertype ? storagetempertype : ''
     },
     success: res => {
       let rdc = res.data.data;
@@ -40,20 +48,148 @@ Page({
     pageIndex:1,
     totalPages:1,
     title: '',
-    complete: false
+    complete: false,
+    province: [{ areaId: '',provinceId:-100,provinceName:"全国",provinceOrderId:-1}],
+    city: [{ cityID: '', cityName: '不限', provinceID: -1 }],
+    area: [{ areaid: '', areaName: '不限', cityid: -1, id: -1 }],
+    manageTypeList: [{id:'',type:'不限'}],
+    tempTypeList: [{ id: '', type: '不限' }],
+    sqmList: [{ id: '', type: "不限" }, { id: "<1000", type: "1000㎡以下" }, { id: "1000~3000", type: "1000~3000㎡" }, {id: "3000~6000",type: "3000~6000㎡"},
+          { id: "6000~12000", type: "6000~12000㎡" }, { id: "12000~20000", type: "12000~20000㎡" }, {id: ">20000",type: "20000㎡以上"}],
+    auditList: [{ "id": "", "name": "不限" },{ "id": "-1,0,1", "name": "未认证" },  { "id": 2, "name": "已认证" }],
+    pindex: 0,
+    cindex: 0,
+    aindex: 0,
+    mindex: 0,
+    tindex: 0,
+    sindex: 0,
+    uindex: 0,
+    keyword:''
   },
-
+  pickerProvince: function (e) {
+    var index = e.detail.value;
+    var currentId = this.data.province[index].provinceId;
+    this.setData({
+      pindex: e.detail.value 
+    })
+    //获取城市列表
+    wx.request({
+      url: app.host + "/i/city/findCitysByProvinceId",
+      data: { provinceID: currentId},
+      success: res => {
+        let citylist = res.data;
+        let list = [{ cityID: -1, cityName: '不限', provinceID: -1 }];
+        for (var i = 0; i < citylist.length; i++) {
+          list.push(citylist[i]);
+        } 
+        this.data.city=[];
+        this.setData({
+          rdc: [],
+          city: list,
+          cindex:0,
+          aindex: 0,
+          area: [{ areaid: '', areaName: '不限', cityid: -1, id: -1 }],
+        });
+        getList(this, app.stand, '', this.data.auditList[this.data.uindex].id, '', this.data.keyword, this.data.manageTypeList[this.data.mindex].id, currentId, this.data.sqmList[this.data.sindex].id, this.data.tempTypeList[this.data.tindex].id)
+      }
+    })
+  },
+  pickerCity: function (e) {
+    var index = e.detail.value;
+    var currentId = this.data.city[index].cityID;
+    this.setData({
+      cindex: e.detail.value
+    })
+    //获取区域列表
+    wx.request({
+      url: app.host + "/i/city/findAreaByCityId",
+      data: { cityId: currentId },
+      success: res => {
+        let arealist = res.data;
+        let list = [{ areaid: -1, areaName: '不限', cityid: -1, id: -1 }];
+        for (var i = 0; i < arealist.length; i++) {
+          list.push(arealist[i]);
+        }
+        this.data.area = [];
+        this.setData({
+          area: list,
+          aindex:0
+        });
+      }
+    })
+  },
+  pickerArea: function (e) {
+    var index = e.detail.value;
+    var currentId = this.data.area[index].areaid;
+    this.setData({
+      aindex: e.detail.value
+    })
+  },
+  pickerMan: function (e) {
+    var index = e.detail.value;
+    var currentId = this.data.manageTypeList[index].id;
+    this.setData({
+      mindex: e.detail.value
+    })
+  },
+  pickerTemp: function (e) {
+    var index = e.detail.value;
+    var currentId = this.data.tempTypeList[index].id;
+    this.setData({
+      tindex: e.detail.value
+    })
+  },
+  pickerSqm: function (e) {
+    var index = e.detail.value;
+    var currentId = this.data.sqmList[index].id;
+    this.setData({
+      sindex: e.detail.value
+    })
+  },
+  pickerAudit: function (e) {
+    var index = e.detail.value;
+    var currentId = this.data.auditList[index].id;
+    this.setData({
+      uindex: e.detail.value
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {    
+  onLoad: function (options) {   
+   var that = this; 
     wx.setNavigationBarTitle({
       title: '冷库资源'
     })
     wx.showLoading({
       title: '加载中'
     })
-    const that = this;
+    //获取省列表
+    wx.request({
+      url: app.host+"/i/city/findProvinceList",
+      success: res => {
+        let prolist = res.data;
+        let list = that.data.province;
+        for (var i = 0; i < prolist.length; i++) {
+          list.push(prolist[i]);
+        }
+        that.setData({
+          province: list
+        }); 
+      }
+    })
+    let manlist = [{ id: '', type: '不限' }];
+    let templist = [{ id: '', type: '不限' }];
+    for (var i = 0; i < app.manageTypeList.data.length; i++) {
+      manlist.push(app.manageTypeList.data[i]);
+    }
+    for (var i = 0; i < app.tempTypeList.data.length; i++) {
+      templist.push(app.tempTypeList.data[i]);
+    }
+    that.setData({
+      manageTypeList: manlist,
+      tempTypeList: templist
+    }); 
     if (app.stand) {
       if (that.data.totalPages)
         that.setData({

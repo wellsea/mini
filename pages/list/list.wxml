@@ -1,24 +1,93 @@
 <!--pages/list/list.wxml-->
-<view class="card">
-    <navigator  hover-class="card-hover" url="/pages/rdcDetail/rdcDetail?title={{item.name}}&id={{item.id}}"
-     class="item item-thumbnail-left" wx:for="{{rdc}}" wx:for-index="idx" wx:for-item="item">
-      <image class='item-image' src='{{item.logo}}'></image>
-      <view class='b omg item-title omg'>{{item.name}}</view>
-      <view class='f13'>
-        <text>可用面积:</text>
-        <text class='orange b'>{{item.sharedInfoEntity.sqm?item.sharedInfoEntity.sqm+'㎡':'--'}}</text>
-        <text class='orange b' wx:if="{{item.sharedInfoEntity.sqm}}">{{item.unitPrice==0?'面议':item.unitPrice}}</text>{{item.unitPrice!=0?item.unit:''}}
+<view class='flex-row f13'>
+<!--省份  -->
+  <view class='flex-cell'>
+    <picker bindchange="pickerProvince" value="{{pindex}}" range-key="provinceName" range="{{province}}">
+      <view class='flex-row'>
+      <text class='flex-cell omg'>{{province[pindex].provinceName}}</text>
+      <text class='iconfont icon-arrLeft-fill'></text>
       </view>
-      <view class='f13 omg'>
-        <text class='greenSpan' wx:if="{{item.istemperaturestandard==1}}">冷链委温度达标库</text>
-        <text class='greenSpan' wx:if="{{item.manageTypeStr}}">{{item.manageTypeStr}}</text>
-        <text class='greenSpan' wx:if="{{item.tempTypeStr}}">{{item.tempTypeStr}}</text>
-        <text class='greenSpan' wx:if="{{item.sqm&&rdc.sqm>0}}">{{item.sqm}}㎡</text>
-        <text class='greenSpan' wx:if="{{item.audit==2}}">已认证</text>
-      </view>
-      <view class='color-99 omg f13'>
-        <text class="iconfont icon-weibiaoti-"></text>{{item.provincename}}-{{item.cityname}}-{{item.areaname}}-{{item.address}}
-      </view>
-    </navigator>
+    </picker>
   </view>
-  <view class="tac padding margin color-99 f13" wx:if="{{complete}}">已经到达天边了~~~</view> 
+<!--城市  -->
+  <view class='flex-cell'>
+    <picker bindchange="pickerCity" value="{{cindex}}" range-key="cityName" range="{{city}}">
+      <view class='flex-row'>
+      <text class='flex-cell omg'>{{city[cindex].cityName}}</text>
+      <text class='iconfont icon-arrLeft-fill'></text>
+      </view>
+    </picker>
+  </view>
+  <form class='flex-cell-3' bindsubmit="search">
+    <input placeholder="请输入关键词" />
+  </form>
+</view>
+<view class='flex-row f13 selectGroup'>
+<!--区域  -->
+  <view class='flex-cell'>
+    <picker bindchange="pickerArea" value="{{aindex}}" range-key="areaName" range="{{area}}">
+      <view class='flex-row'>
+      <text class='flex-cell omg'>{{area[aindex].areaName}}</text>
+      <text class='iconfont icon-arrLeft-fill'></text>
+      </view>
+    </picker>
+  </view>
+<!--经营类型  -->
+  <view class='flex-cell'>
+    <picker bindchange="pickerMan" value="{{mindex}}" range-key="type" range="{{manageTypeList}}">
+      <view class='flex-row'>
+      <text class='flex-cell omg'>{{manageTypeList[mindex].type}}</text>
+      <text class='iconfont icon-arrLeft-fill'></text>
+      </view>
+    </picker>
+  </view>
+<!--温度类型  -->
+  <view class='flex-cell'>
+   <picker bindchange="pickerTemp" value="{{tindex}}" range-key="type" range="{{tempTypeList}}">
+      <view class='flex-row'>
+      <text class='flex-cell omg'>{{tempTypeList[tindex].type}}</text>
+      <text class='iconfont icon-arrLeft-fill'></text>
+      </view>
+    </picker>
+  </view>
+<!--面积  -->
+  <view class='flex-cell'>
+    <picker bindchange="pickerSqm" value="{{sindex}}" range-key="type" range="{{sqmList}}">
+      <view class='flex-row'>
+      <text class='flex-cell omg'>{{sqmList[sindex].type}}</text>
+      <text class='iconfont icon-arrLeft-fill'></text>
+      </view>
+    </picker>
+  </view>
+<!--认证否  -->
+  <view class='flex-cell'>
+    <picker bindchange="pickerAudit" value="{{uindex}}" range-key="name" range="{{auditList}}">
+      <view class='flex-row'>
+      <text class='flex-cell omg'>{{auditList[uindex].name}}</text>
+      <text class='iconfont icon-arrLeft-fill'></text>
+      </view>
+    </picker>
+  </view>
+</view>
+<view class="card">
+  <navigator hover-class="card-hover" url="/pages/rdcDetail/rdcDetail?title={{item.name}}&id={{item.id}}" class="item item-thumbnail-left" wx:for="{{rdc}}" wx:for-index="idx" wx:for-item="item">
+    <image class='item-image' src='{{item.logo}}'></image>
+    <view class='b omg item-title omg'>{{item.name}}</view>
+    <view class='f13'>
+      <text>可用面积:</text>
+      <text class='orange b'>{{item.sharedInfoEntity.sqm?item.sharedInfoEntity.sqm+'㎡':'--'}}</text>
+      <text class='orange b' wx:if="{{item.sharedInfoEntity.sqm}}">{{item.unitPrice==0?'面议':item.unitPrice}}</text>{{item.unitPrice!=0?item.unit:''}}
+    </view>
+    <view class='f13 omg'>
+      <text class='greenSpan' wx:if="{{item.istemperaturestandard==1}}">冷链委温度达标库</text>
+      <text class='greenSpan' wx:if="{{item.manageTypeStr}}">{{item.manageTypeStr}}</text>
+      <text class='greenSpan' wx:if="{{item.tempTypeStr}}">{{item.tempTypeStr}}</text>
+      <text class='greenSpan' wx:if="{{item.sqm&&rdc.sqm>0}}">{{item.sqm}}㎡</text>
+      <text class='greenSpan' wx:if="{{item.audit==2}}">已认证</text>
+    </view>
+    <view class='color-99 omg f13'>
+      <text class="iconfont icon-weibiaoti-"></text>{{item.provincename}}-{{item.cityname}}-{{item.areaname}}-{{item.address}}
+    </view>
+  </navigator>
+</view>
+<view class="tac padding margin color-99 f13" wx:if="{{complete}}">已经到达天边了~~~</view>
