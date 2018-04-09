@@ -1,72 +1,74 @@
 <!--pages/list/list.wxml-->
-<view class='flex-row f13'>
-<!--省份  -->
-  <view class='flex-cell'>
-    <picker bindchange="pickerProvince" value="{{pindex}}" range-key="provinceName" range="{{province}}">
-      <view class='flex-row'>
-      <text class='flex-cell omg'>{{province[pindex].provinceName}}</text>
-      <text class='iconfont icon-arrLeft-fill'></text>
-      </view>
-    </picker>
+<view class='fixed'>
+  <view class='flex-row'>
+    <!--省份  -->
+    <view class='flex-cell'>
+      <picker bindchange="pickerProvince" value="{{pindex}}" range-key="provinceName" range="{{province}}">
+        <view class='flex-row'>
+          <text class='flex-cell omg'>{{province[pindex].provinceName}}</text>
+          <text class='iconfont icon-arrLeft-fill'></text>
+        </view>
+      </picker>
+    </view>
+    <!--城市  -->
+    <view class='flex-cell'>
+      <picker bindchange="pickerCity" value="{{cindex}}" range-key="cityName" range="{{city}}">
+        <view class='flex-row'>
+          <text class='flex-cell omg'>{{city[cindex].cityName}}</text>
+          <text class='iconfont icon-arrLeft-fill'></text>
+        </view>
+      </picker>
+    </view>
+    <form class='flex-cell-3' bindsubmit="search">
+      <input placeholder="请输入关键词" name="keyword" bindconfirm="search" />
+    </form>
   </view>
-<!--城市  -->
-  <view class='flex-cell'>
-    <picker bindchange="pickerCity" value="{{cindex}}" range-key="cityName" range="{{city}}">
-      <view class='flex-row'>
-      <text class='flex-cell omg'>{{city[cindex].cityName}}</text>
-      <text class='iconfont icon-arrLeft-fill'></text>
-      </view>
-    </picker>
-  </view>
-  <form class='flex-cell-3' bindsubmit="search">
-    <input placeholder="请输入关键词" />
-  </form>
-</view>
-<view class='flex-row f13 selectGroup'>
-<!--区域  -->
-  <view class='flex-cell'>
-    <picker bindchange="pickerArea" value="{{aindex}}" range-key="areaName" range="{{area}}">
-      <view class='flex-row'>
-      <text class='flex-cell omg'>{{area[aindex].areaName}}</text>
-      <text class='iconfont icon-arrLeft-fill'></text>
-      </view>
-    </picker>
-  </view>
-<!--经营类型  -->
-  <view class='flex-cell'>
-    <picker bindchange="pickerMan" value="{{mindex}}" range-key="type" range="{{manageTypeList}}">
-      <view class='flex-row'>
-      <text class='flex-cell omg'>{{manageTypeList[mindex].type}}</text>
-      <text class='iconfont icon-arrLeft-fill'></text>
-      </view>
-    </picker>
-  </view>
-<!--温度类型  -->
-  <view class='flex-cell'>
-   <picker bindchange="pickerTemp" value="{{tindex}}" range-key="type" range="{{tempTypeList}}">
-      <view class='flex-row'>
-      <text class='flex-cell omg'>{{tempTypeList[tindex].type}}</text>
-      <text class='iconfont icon-arrLeft-fill'></text>
-      </view>
-    </picker>
-  </view>
-<!--面积  -->
-  <view class='flex-cell'>
-    <picker bindchange="pickerSqm" value="{{sindex}}" range-key="type" range="{{sqmList}}">
-      <view class='flex-row'>
-      <text class='flex-cell omg'>{{sqmList[sindex].type}}</text>
-      <text class='iconfont icon-arrLeft-fill'></text>
-      </view>
-    </picker>
-  </view>
-<!--认证否  -->
-  <view class='flex-cell'>
-    <picker bindchange="pickerAudit" value="{{uindex}}" range-key="name" range="{{auditList}}">
-      <view class='flex-row'>
-      <text class='flex-cell omg'>{{auditList[uindex].name}}</text>
-      <text class='iconfont icon-arrLeft-fill'></text>
-      </view>
-    </picker>
+  <view class='flex-row selectGroup'>
+    <!--区域  -->
+    <view class='flex-cell'>
+      <picker bindchange="pickerArea" value="{{aindex}}" range-key="areaName" range="{{area}}">
+        <view class='flex-row'>
+          <text class='flex-cell omg'>{{area[aindex].areaName}}</text>
+          <text class='iconfont icon-arrLeft-fill'></text>
+        </view>
+      </picker>
+    </view>
+    <!--经营类型  -->
+    <view class='flex-cell'>
+      <picker bindchange="pickerMan" value="{{mindex}}" range-key="type" range="{{manageTypeList}}">
+        <view class='flex-row'>
+          <text class='flex-cell omg'>{{manageTypeList[mindex].type}}</text>
+          <text class='iconfont icon-arrLeft-fill'></text>
+        </view>
+      </picker>
+    </view>
+    <!--温度类型  -->
+    <view class='flex-cell'>
+      <picker bindchange="pickerTemp" value="{{tindex}}" range-key="type" range="{{tempTypeList}}">
+        <view class='flex-row'>
+          <text class='flex-cell omg'>{{tempTypeList[tindex].type}}</text>
+          <text class='iconfont icon-arrLeft-fill'></text>
+        </view>
+      </picker>
+    </view>
+    <!--面积  -->
+    <view class='flex-cell'>
+      <picker bindchange="pickerSqm" value="{{sindex}}" range-key="type" range="{{sqmList}}">
+        <view class='flex-row'>
+          <text class='flex-cell omg'>{{sqmList[sindex].type}}</text>
+          <text class='iconfont icon-arrLeft-fill'></text>
+        </view>
+      </picker>
+    </view>
+    <!--认证否  -->
+    <view class='flex-cell'>
+      <picker bindchange="pickerAudit" value="{{uindex}}" range-key="name" range="{{auditList}}">
+        <view class='flex-row'>
+          <text class='flex-cell omg'>{{auditList[uindex].name}}</text>
+          <text class='iconfont icon-arrLeft-fill'></text>
+        </view>
+      </picker>
+    </view>
   </view>
 </view>
 <view class="card">
@@ -89,5 +91,9 @@
       <text class="iconfont icon-weibiaoti-"></text>{{item.provincename}}-{{item.cityname}}-{{item.areaname}}-{{item.address}}
     </view>
   </navigator>
+  <view wx:if="{{rdc.length==0}}" class='tac orange nodata'>
+    <view class='iconfont icon-meiyoushujuyemian'></view>
+    <text class='nodata'>没有数据……</text>
+  </view>
+  <view class="tac padding margin color-99 f13" wx:if="{{complete&&rdc.length!=0}}">已经到达天边了~~~</view>
 </view>
-<view class="tac padding margin color-99 f13" wx:if="{{complete}}">已经到达天边了~~~</view>

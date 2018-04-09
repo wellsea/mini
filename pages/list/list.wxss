@@ -1,4 +1,31 @@
 /* pages/list/list.wxss */
-.selectGroup>div{
+.selectGroup{
+  border-bottom: 2rpx solid #efefef;
+}
+.selectGroup>view{
   width: 20%;
+}
+.fixed{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 180rpx;
+  z-index: 99999;
+  background: #fff;
+}
+.fixed>view{
+  height: 90rpx;
+}
+.card{
+  margin-top: 184rpx;
+  width: 100%;
+  box-shadow: none
+}
+.nodata{
+  padding: 100rpx 20rpx;
+}
+.nodata view{
+  font-size: 80px;
+  margin: 20px auto;
 }
